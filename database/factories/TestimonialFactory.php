@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Depositions>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Testimonial>
  */
-class DepositionsFactory extends Factory
+class TestimonialFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +18,7 @@ class DepositionsFactory extends Factory
     {
         return [
             'persons_name' => fake()->name(),
-            'deposition' => fake()->text(),
+            'testimonial' => fake()->text(),
             'photo_path' => fake()->filePath(),
         ];
     }
