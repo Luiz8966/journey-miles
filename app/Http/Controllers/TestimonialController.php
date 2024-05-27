@@ -2,47 +2,49 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Testimonial;
+use App\Http\Requests\TestimonialRequest;
 
 class TestimonialController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $testimonials = Testimonial::all();
+        return response()->json($testimonials);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(TestimonialRequest $request)
     {
-        //
+        $testimonial = Testimonial::create($request->all());
+        return response()->json($testimonial, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
+        $testimonial = Testimonial::find($id);
+        return response()->json($testimonial);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(TestimonialRequest $request, string $id)
     {
-        //
+        $testimonial = Testimonial::find($id);
+
+        if (!$testimonial) return response()->json('Testimonial not found', 404);
+
+        $testimonial->fill($request->all());
+        $testimonial->save();
+
+        return response()->json($testimonial);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        //
+        $testimonial = Testimonial::find($id);
+
+        if (!$testimonial) return response()->json('Testimonial not found', 404);
+
+        $testimonial->delete();
+
+        return response()->noContent();
     }
 }

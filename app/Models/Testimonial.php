@@ -14,4 +14,6 @@ class Testimonial extends Model
         'testimonial',
         'photo_path',
     ];
+
+    protected $casts = ['created_at' => 'datetime', 'updated_at' => 'datetime'];
 }
